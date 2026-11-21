@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/search-results.css' %}">
+
+<section class="flights-section">
+    <div class="container">
+
+        <div class="flights-heading">
+            <h1>Available Flights</h1>
+            <p>Find your next destination and explore available flights.</p>
+        </div>
+
+        {% if flights_list %}
+
+        <div class="flights-list">
+
+            {% for flight in flights_list %}
+
+            <div class="flight-card">
+
+                <div class="flight-top">
+                    <div>
+                        <h3>{{ flight.airline }}</h3>
+                        <span class="flight-number">
+                            Flight {{ flight.flight_number }}
+                        </span>
+                    </div>
+
+                    {% if flight.available_seats > 0 %}
+                    <span class="flight-status available">
+                        Available
+                    </span>
+                    {% else %}
+                    <span class="flight-status sold-out">
+                        Sold Out
+                    </span>
+                    {% endif %}
+                </div>
+
+                <div class="flight-route">
+
+                    <div class="airport">
+                        <h2>{{ flight.origin }}</h2>
+                        <span>
+                            {{ flight.departure_date|date:"H:i" }}
+                        </span>
+                        <p>
+                            {{ flight.departure_date|date:"d M Y" }}
+                        </p>
+                    </div>
+
+                    <div class="route-line">
+                        <i class="fa fa-plane"></i>
+                        <span></span>
+                    </div>
+
+                    <div class="airport">
+                        <h2>{{ flight.destination }}</h2>
+                        <span>
+                            {{ flight.arrival_date|date:"H:i" }}
+                        </span>
+                        <p>
+                            {{ flight.arrival_date|date:"d M Y" }}
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="flight-bottom">
+
+                    <div class="flight-seats">
+                        <i class="fa fa-users"></i>
+                        {{ flight.available_seats }} Seats Available
+                    </div>
+
+                    <div class="flight-price">
+                        <span>Price</span>
+                        <h3>${{ flight.price|floatformat:1 }}</h3>
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="no-flights">
+            <h3>No Flights Found!</h3>
+            <p>There are currently no flights matching your search.</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

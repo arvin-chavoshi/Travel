@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+{% load website_tags %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="destination-hero"
+    style="background-image: linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.55)), url('{{ destination.image.url }}');">
+
+    <div class="destination-hero-content">
+        <span class="destination-label">EXPLORE DESTINATION</span>
+        <h1>{{ destination.display_name }}</h1>
+        <p>{{ destination_obj.name }}, {{ destination.country }}</p>
+    </div>
+
+</section>
+
+
+<!-- Destination Details -->
+<section class="destination-details section-gap">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Main Content -->
+            <div class="col-lg-8">
+
+                <div class="destination-main">
+
+                    <span class="destination-subtitle">
+                        DISCOVER THE BEAUTY
+                    </span>
+
+                    <h2>Explore {{ destination_obj.name }}</h2>
+
+                    <p class="destination-description">
+                        {{ destination_obj.description }}
+                    </p>
+
+                    <div class="destination-info">
+
+                        <div class="info-item">
+                            <span>Destination</span>
+                            <strong>{{ destination_obj.name }}</strong>
+                        </div>
+
+                        <div class="info-item">
+                            <span>Country</span>
+                            <strong>{{ destination_obj.country }}</strong>
+                        </div>
+
+                        <div class="info-item">
+                            <span>Tour Price</span>
+                            <strong>${{ destination_obj.price|floatformat:1 }}</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="destination-extra">
+                        <h3>Why Visit {{ destination_obj.name }}?</h3>
+
+                        <p>
+                            Experience unforgettable moments, discover
+                            beautiful landscapes and enjoy a unique travel
+                            experience in this amazing destination.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+
+                <div class="destination-booking">
+
+                    <div class="booking-image">
+                        <img src="{{ destination_obj.image.url }}"
+                             alt="{{ destination_obj.name }}">
+                    </div>
+
+                    <div class="booking-content">
+
+                        <span>STARTING FROM</span>
+
+                        <h2>${{ destination_obj.price|floatformat:1 }}</h2>
+
+                        <p>
+                            Discover {{ destination_obj.display_name }}
+                            and enjoy an unforgettable journey.
+                        </p>
+
+                        <a href="{% url 'website:contact' %}"
+                           class="booking-btn">
+                            CONTACT US
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

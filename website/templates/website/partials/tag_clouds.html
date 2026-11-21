@@ -1,0 +1,8 @@
+<div class="single-sidebar-widget tag-cloud-widget">
+	<h4 class="tagcloud-title">Tag Clouds</h4>
+	<ul>
+	{% for i in tags %}
+		<li><a href="{% url 'blog:blog-home' %}?tag={{ i.name|urlencode }}">{{ i.name }}</a></li>
+	{% endfor %}
+	</ul>
+</div>

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<section class="about-banner relative">
+	<div class="overlay overlay-bg"></div>
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					Insurance
+				</h1>
+				<p class="text-white link-nav"><a href="{% url 'website:index' %}">Home </a> <span class="lnr lnr-arrow-right"></span>
+					<a href="{% url 'website:insurance' %}"> Insurance</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="insurence-one-area section-gap">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6 insurence-left">
+				<img class="img-fluid img-one" src="{% static 'img/insurence/i1.jpg' %}" alt>
+			</div>
+			<div class="col-lg-6 insurence-right">
+				<h6 class="text-uppercase">TRAVEL WITH CONFIDENCE</h6>
+				<h1>Travel Insurance for your peace of mind</h1>
+				<p>
+					Traveling is one of life's greatest experiences, but unexpected
+    				situations can sometimes affect your journey. Travel insurance
+    				helps protect you against unexpected expenses and provides
+    				peace of mind throughout your trip. Whether you are traveling
+    				for business or leisure, having the right coverage allows you
+    				to enjoy your journey with greater confidence.
+				</p>
+				<div class="list-wrap">
+					<ul>
+						<li>Emergency Medical Experinece</li>
+						<li>Trip Cancellation</li>
+						<li>Lost Baggage Coverage</li>
+						<li>24/7 Travel Assistance</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="insurence-two-area pb-120">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6 insurence-left">
+				<h6 class="text-uppercase">WHY CHOOSE TRAVEL INSURANCE</h6>
+				<h1>Protection wherever Your Journey Takes You</h1>
+				<p>
+					From unexpected medical emergencies to flight delays and lost
+    				baggage, travel insurance offers valuable protection when you
+    				need it most. Our travel insurance options are designed to help
+    				you handle unexpected travel challenges, reduce financial
+    				stress, and make your journey safer and more comfortable.
+				</p>
+				<div class="list-wrap">
+					<ul>
+						<li>Medical Emergency Support</li>
+						<li>Flight Delay Assistance</li>
+						<li>Personal Belongigs Protection</li>
+						<li>Unexpected Travel Expenses</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-6 insurence-right">
+				<img class="img-fluid img-two" src="{% static 'img/insurence/i2.jpg' %}" alt>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+{% endblock %}
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag() { dataLayer.push(arguments); }
+	gtag('js', new Date());
+
+	gtag('config', 'UA-23581568-13');
+</script>
+</body>
+
+</html>

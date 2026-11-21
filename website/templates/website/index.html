@@ -1,0 +1,383 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row fullscreen align-items-center justify-content-between">
+      <div class="col-lg-6 col-md-6 banner-left">
+        <h6 class="text-white">Away from monotonous life</h6>
+        <h1 class="text-white">Magical Travel</h1>
+        <p class="text-white">
+          If you are looking at blank cassettes on the web, you may be very
+          confused at the difference in price. You may see some for as low
+          as $.17 each.
+        </p>
+      </div>
+      <!-- arvin -->
+      <div class="col-lg-4 col-md-6 banner-right" style="padding-top: 90px;">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="flight-tab" data-toggle="tab" href="#flight" role="tab"
+              aria-controls="flight" aria-selected="true">Flights</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="hotel-tab" data-toggle="tab" href="#hotel" role="tab" aria-controls="hotel"
+              aria-selected="false">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="holiday-tab" data-toggle="tab" href="#holiday" role="tab" aria-controls="holiday"
+              aria-selected="false">Holidays</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+            <form class="form-wrap" action="{% url 'website:flight' %}" method="GET">
+              <input type="text" class="form-control" name="origin" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+              <input type="text" class="form-control" name="destination" placeholder="To " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
+              <input type="date" class="form-control" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
+              <input type="date" class="form-control" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
+              <input type="number" class="form-control" name="passengers" placeholder="Passengers " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Passengers '">
+              <input type="number" class="form-control" name="price" placeholder="Price " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price '">
+              <button type="submit" class="primary-btn text-uppercase">Search flights</button>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+            <form class="form-wrap" action="{% url 'website:hotels' %}" method="GET">
+              <input type="text" class="form-control" name="hotel_name" placeholder="Hotel Name" onfocus="this.placeholder = ''">
+              <input type="number" class="form-control" name="rating" placeholder="Rating " onfocus="this.placeholder = ''">
+              <div style="max-width: 100%; display: flex; justify-content: space-between; padding: 0 10px;">
+                <label style="margin-top: 5px;">Swimming Pool :</label>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                  <label style="margin-top: 5px;">yes</label>
+                  <input type="radio" name="swimmingpool" value="True">
+                </div>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                  <label style="margin-top: 5px;">no</label>
+                  <input type="radio" name="swimmingpool" value="False">
+                </div>
+              </div>
+              <div style="max-width: 100%; display: flex; justify-content: space-between; padding: 0 10px;">
+                <label style="margin-top: 5px;">Room Service :</label>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                  <label style="margin-top: 5px;">yes</label>
+                  <input type="radio" name="roomservice" value="True">
+                </div>
+                <div style="display: flex; gap: 5px; align-items: center;">
+                  <label style="margin-top: 5px;">no</label>
+                  <input type="radio" name="roomservice" value="False">
+                </div>
+              </div>
+              <input type="number" min="1" max="2000" class="form-control" name="price_start" placeholder="Price Start "
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price Start '">
+              <input type="number" min="1" max="2000" class="form-control" name="price_end" placeholder="Price End "
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price End '">
+              <button type="submit" class="primary-btn text-uppercase">Search Hotels</button>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="holiday" role="tabpanel" aria-labelledby="holiday-tab">
+            <form class="form-wrap" action="{% url 'website:packages' %}" method="GET">
+              <input type="text" class="form-control" name="country" placeholder="Country " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Country '">
+              <input type="number" class="form-control" name="days" placeholder="Days " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Days'">
+              <input type="number" class="form-control" name="night" placeholder="Night " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Night '">
+              <input type="date" class="form-control" name="date" placeholder="Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date'">
+              <input type="text" class="form-control" name="airport" placeholder="Airport " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Airport '">
+              <input type="number" min="1" max="10000" class="form-control" name="price" placeholder="Price " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Price '">
+              <button type="submit" class="primary-btn text-uppercase">Search Holidays</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start popular-destination Area -->
+<section class="popular-destination-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">Popular Destinations</h1>
+          <p>
+            We all live in an age that belongs to the young at heart. Life
+            that is becoming extremely fast, day.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      {% for i in destinations %}
+      <div class="col-lg-4">
+        <div class="single-destination relative">
+          <div class="thumb relative">
+            <div class="overlay overlay-bg"></div>
+            <img class="img-fluid" src="{{ i.image.url }}" alt="" />
+          </div>
+          <div class="desc">
+            <a href="{% url 'website:destination_details' i.id %}" class="price-btn">$ {{ i.price|floatformat:1 }}</a>
+            <h4>{{ i.display_name }}</h4>
+            <p>{{ i.name }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- End popular-destination Area -->
+
+<!-- start We Provide Affordable Prices -->
+<section class="price-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">We Provide Affordable Prices</h1>
+          <p>Well educated, intellectual people, especially scientists at all times demonstrate
+            considerably.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="single-price">
+          <h4>Cheap Packages</h4>
+          <ul class="price-list">
+            {% for i in cheap %}
+            <li class="d-flex justify-content-between align-items-center">
+              <span>{{ i.title }}</span>
+              <a href="{% url 'website:packages' %}" class="price-btn">${{ i.price_per_person|floatformat:1 }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="single-price">
+          <h4>Luxury Packages</h4>
+          <ul class="price-list">
+            {% for i in luxury %}
+            <li class="d-flex justify-content-between align-items-center">
+              <span>{{ i.title }}</span>
+              <a href="{% url 'website:packages' %}" class="price-btn">${{ i.price_per_person|floatformat:1 }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="single-price">
+          <h4>Camping Packages</h4>
+          <ul class="price-list">
+            {% for i in camping %}
+            <li class="d-flex justify-content-between align-items-center">
+              <span>{{ i.title }}</span>
+              <a href="{% url 'website:packages' %}" class="price-btn">${{ i.price_per_person|floatformat:1 }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End We Provide Affordable Prices -->
+
+<!-- Start other-issue Area -->
+<section class="other-issue-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-9">
+        <div class="title text-center">
+          <h1 class="mb-10">Other issues we can help you with</h1>
+          <p>
+            We all live in an age that belongs to the young at heart. Life
+            that is.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="single-other-issue">
+          <div class="thumb">
+            <img class="img-fluid" src="{% static  'img/o1.jpg' %}" alt="" />
+          </div>
+          <div>
+            <h4>Rent a Car</h4>
+          </div>
+          <p>
+            The preservation of human life is the ultimate value, a pillar
+            of ethics and the foundation.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="single-other-issue">
+          <div class="thumb">
+            <img class="img-fluid" src="{% static  'img/o2.jpg' %}" alt="" />
+          </div>
+          <div>
+            <h4>Cruise Booking</h4>
+          </div>
+          <p>
+            I was always somebody who felt quite sorry for myself, what I
+            had not got compared.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="single-other-issue">
+          <div class="thumb">
+            <img class="img-fluid" src="{% static  'img/o3.jpg' %}" alt="" />
+          </div>
+          <div>
+            <h4>To Do List</h4>
+          </div>
+          <p>
+            The following article covers a topic that has recently moved to
+            center stage–at least it seems.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="single-other-issue">
+          <div class="thumb">
+            <img class="img-fluid" src="{% static  'img/o4.jpg' %}" alt="" />
+          </div>
+          <div>
+            <h4>Food Features</h4>
+          </div>
+          <p>
+            There are many kinds of narratives and organizing principles.
+            Science is driven by evidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End other-issue Area -->
+
+<!-- start Testimonial from our Clients -->
+<section class="testimonial-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-70 col-lg-8">
+        <div class="title text-center">
+          <h1 class="mb-10">Testimonial from our Clients</h1>
+          <p>The French Revolution constituted for the conscience of the dominant aristocratic class a
+            fall from </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="active-testimonial">
+        {% for i in testimonials %}
+        <div class="single-testimonial item d-flex flex-row">
+          <div class="thumb">
+            {% if i.image %}
+              <img style="width: 45px; height: 45px; object-fit: cover;" class="img-fluid" src="{{ i.image.url }}" alt="{{ i.name }}">
+            {% else %}
+              <img src="{% static 'img/user.png' %}" alt="{{ i.name }}">
+            {% endif %}
+            </div>
+          <div class="desc">
+            <p>{{ i.message }}</p>
+            <h4>{{ i.name }}</h4>
+            <div class="star">
+              {% for x in "12345" %}
+                {% if forloop.counter <= i.rating %}
+                  <span class="fa fa-star checked"></span>
+                {% else %}
+                  <span class="fa fa-star"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Testimonial from our Clients -->
+
+<!-- Start home-about Area -->
+<section class="home-about-area">
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-end">
+      <div class="col-lg-6 col-md-12 home-about-left">
+        <h1>
+          Can't Find Your Perfect Trip? <br>
+          Let Us Create It for You!
+        </h1>
+        <p>
+          Tell us about your dream destination and travel preferences. 
+          Our team will help you plan a personalized trip that matches 
+          your needs and budget.
+        </p>
+        <a href="{% url 'website:contact' %}" class="primary-btn text-uppercase">request your custom tour</a>
+      </div>
+      <div class="col-lg-6 col-md-12 home-about-right no-padding">
+        <img class="img-fluid" src="{% static  'img/about-img.jpg' %}" alt="" />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End home-about Area -->
+
+<!-- Start blog Area -->
+<section class="recent-blog-area section-gap">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="menu-content pb-60 col-lg-9">
+        <div class="title text-center">
+          <h1 class="mb-10">Latest from Our Blog</h1>
+          <p>
+            With the exception of Nietzsche, no other madman has contributed
+            so much to human sanity as has.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="active-recent-blog-carusel">
+        {% for i in posts %}
+        <div class="single-recent-blog-post item">
+          <div class="thumb">
+            <img style="width: 360px; height: 180px;" class="img-fluid" src="{{ i.image.url }}" alt="{{ i.title }}" />
+          </div>
+          <div class="details">
+            <div class="tags">
+              <ul>
+                {% for x in i.tags.all %}
+                <li>
+                  <a href="{% url 'blog:blog-home' %}?tag={{ x.name|urlencode }}">{{ x }}</a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            <a href="{% url 'blog:blog-post' i.id %}">
+              <h4 class="title">{{ i.title }}</h4>
+            </a>
+            <p>
+              {{ i.excerpt }}
+            </p>
+            <h6 class="date">{{ i.created_at }}</h6>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- End recent-blog Area -->
+{% endblock %}
+</body>
+
+</html>
